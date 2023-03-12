@@ -9,10 +9,8 @@ project(serial VERSION 1.2.1)
 
 ## Options 
 
-# Use Catkin
-option(USE_CATKIN on)
-# Build serial sample 
-option(BUILD_SAMPLE on)
+option(USE_CATKIN "Use Catkin")
+option(BUILD_SAMPLE "Build serial sample ")
 
 
 # Find catkin
@@ -76,13 +74,12 @@ else()
 endif()
 
 ## Include headers
-target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>)
+target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
 
 ## Example
 if(BUILD_SAMPLE)
     add_executable(serial_example examples/serial_example.cc)
-    add_dependencies(serial_example ${PROJECT_NAME})
     target_link_libraries(serial_example ${PROJECT_NAME})
 endif()
 
